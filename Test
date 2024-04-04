@@ -1,0 +1,5 @@
+from FileBrowser import FileBrowser
+
+path =  FileBrowser.setSaveLocation()
+
+print(path)

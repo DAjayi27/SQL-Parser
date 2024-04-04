@@ -16,7 +16,7 @@ tableName , extension = os.path.splitext(filename)
 
 
 
-outPut =  open(f"{tableName} insert statement.txt","w")
+
 
 # Read the CSV file
 
@@ -32,7 +32,19 @@ for input in file :
 
 insertStatement +=  ";"
 
+#get the save path
+
+selectedPath = FileBrowser.setSaveLocation()
+
+savePath = f"{selectedPath}\{tableName} insert statement.txt"
+
+# create the output file 
+
+outPut =  open(savePath,"w")
+
 outPut.write(insertStatement)
+
+
    
 
 
