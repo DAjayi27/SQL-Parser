@@ -25,13 +25,18 @@ tableName , extension = os.path.splitext(filename)
 
 rbdms = MySQL(tableName)
 
+first_line = file.readline().strip()
+first_line = first_line.split(",")
 
-
+EXPECTED_ROW_SIZE = len(first_line)
 
 for input in file :
     input = input.strip('\n')
     inputArray = input.split(",")
-    rbdms.insertInto(inputArray)
+    if len(inputArray) == EXPECTED_ROW_SIZE:
+        rbdms.insertInto(inputArray)
+    else:
+        raise ValueError("The rows in the file appear to not be properly aligned. One or more of the rows need aligning")
     insertValue =  f"\t({input})\n"
     
 rbdms.analyzeData()

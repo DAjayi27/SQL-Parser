@@ -1,8 +1,6 @@
-test  = {}
+arr = ["1","2","3","3"]
 
-varName = "dan"
-occurance  = 3
+arr[3] = float(arr[3])
 
-test.update({varName:occurance})
+print(arr)
 
-print()
