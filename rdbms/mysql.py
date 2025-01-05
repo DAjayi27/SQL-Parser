@@ -66,14 +66,9 @@ class MySQL(SQL):
                         self.__occurrenceData[column_index]["string"]+=1
                 
 
-      
-        
-        print(self.__occurrenceData)
         test = np.array(list(zip(*self.data)),dtype=object)
         
-        
-        
-        
+         
         for column_index in range(len(test)):
             
             column = test[column_index]
@@ -103,32 +98,16 @@ class MySQL(SQL):
             
             for index in range(len(column)):
                 data = column[index]
-                column[index] = self.convertData(selectedType,data)
+                column[index] = self.__convertData(selectedType,data)
                 
         
         if len(test) > 1:    
-            print(list(zip(*test)))
+            self.data = list(zip(*test))
         else:
-            print(list(*test))
+            self.data = list(*test)
             
         
-            
-        
-            
-            
-            
-            
-            
-        
-        
-        
-            
-        
-            
-       
-            
-            
-    def convertData(self, convertType,data):
+    def __convertData(self, convertType,data):
         
         if convertType == "bool":
             return bool(data)
@@ -136,6 +115,29 @@ class MySQL(SQL):
             return str(data).strip()
         elif convertType == "number":
             return float(data)
+    
+    def generateInsertStatement(self):
+        
+        insertStatement = ""
+        
+        for row in self.data :
+            
+        
+            
+        
+            
+            
+            
+            
+            
+        
+        
+        
+            
+            
+       
+            
+            
             
             
             

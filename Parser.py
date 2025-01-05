@@ -28,6 +28,8 @@ rbdms = MySQL(tableName)
 first_line = file.readline().strip()
 first_line = first_line.split(",")
 
+rbdms.insertInto(first_line)
+
 EXPECTED_ROW_SIZE = len(first_line)
 
 for input in file :
@@ -36,26 +38,27 @@ for input in file :
     if len(inputArray) == EXPECTED_ROW_SIZE:
         rbdms.insertInto(inputArray)
     else:
-        raise ValueError("The rows in the file appear to not be properly aligned. One or more of the rows need aligning")
-    insertValue =  f"\t({input})\n"
+        message = f"The rows in the file appear to not be properly aligned. the row {input} is not aligned"
+        raise ValueError(message)
     
 rbdms.analyzeData()
+
+rbdms.generateInsertStatement()
     
-# #at the end add a semicolon to finish up the insert statement
+#at the end add a semicolon to finish up the insert statement
 
-# insertStatement +=  ";"
 
-# #get the save path
+#get the save path
 
-# selectedPath = FileBrowser.setSaveLocation()
+selectedPath = FileBrowser.setSaveLocation()
 
-# savePath = f"{selectedPath}\{tableName} insert statement.txt"
+savePath = f"{selectedPath}\{tableName} insert statement.txt"
 
-# # create the output file 
+# create the output file 
 
-# outPut =  open(savePath,"w")
+outPut =  open(savePath,"w")
 
-# outPut.write(insertStatement)
+outPut.write(insertStatement)
 
 
    

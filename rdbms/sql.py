@@ -9,3 +9,7 @@ class SQL(ABC):
     @abstractmethod
     def insertIntoSpecificCols():
         pass
+    
+    @abstractmethod
+    def generateInsertStatement():
+        pass
