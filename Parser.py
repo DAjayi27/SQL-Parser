@@ -1,12 +1,15 @@
+
+
 import os
 from  FileBrowser import FileBrowser
+from rdbms.mysql import MySQL
 
+#parser converts CSV files into insert statements for SQL databases (MSQL RDBMS) (currently only supports csv files)
 
-#pareser converts CSV files into insert statements for SQL databases (MSQL RDBMS) (currently only supports csv files)
-
-#opens a file explorer to select the csv file 
+#opens a file explorer window to select the csv file 
 
 filePath =  FileBrowser.browseFiles()
+
 
 file = open( filePath ,"r")
 
@@ -16,29 +19,45 @@ tableName , extension = os.path.splitext(filename)
 
 
 
-outPut =  open(f"{tableName} insert statement.txt","w")
+
 
 # Read the CSV file
 
-insertStatement =  f"INSERT INTO {tableName} Values \n"
+rbdms = MySQL(tableName)
 
+first_line = file.readline().strip()
+first_line = first_line.split(",")
+
+rbdms.insertInto(first_line)
+
+EXPECTED_ROW_SIZE = len(first_line)
 
 for input in file :
     input = input.strip('\n')
-    insertValue =  f"\t({input})\n"
-    insertStatement += insertValue
+    inputArray = input.split(",")
+    if len(inputArray) == EXPECTED_ROW_SIZE:
+        rbdms.insertInto(inputArray)
+    else:
+        message = f"The rows in the file appear to not be properly aligned. the row {input} is not aligned"
+        raise ValueError(message)
     
-#at the end add a semicolon to finish up the insert statement
+rbdms.analyzeData()
 
-insertStatement +=  ";"
+insertStatement = rbdms.generateInsertStatement()
+    
+
+
+
+#get the save path
+
+selectedPath = FileBrowser.setSaveLocation()
+
+savePath = f"{selectedPath}\Insert Statement.txt"
+
+# # create the output file 
+
+outPut =  open(savePath,"w")
 
 outPut.write(insertStatement)
-   
-
-
-
-
-
-
 
 
