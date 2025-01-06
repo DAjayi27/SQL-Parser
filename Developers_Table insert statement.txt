@@ -28,7 +28,7 @@ INSERT INTO Developers_Table Values
 	(Pipeworks Studio,1999,Eugene, USA)
 	(Epic Games,1991,Cary, USA)
 	(Rockstar San Diego,1984,Carlsbad, USA)
-	(Retro Studios,1998,Austin, USA)
+	(Retro Studios,1998,Austin,USA)
 	(Capcom,1979,Osaka, Japan)
 	(Blizzard Entertainment,1991,Irvine, USA)
 	(Reflections Interactive,1984,Newcastle upon Tyne, England)

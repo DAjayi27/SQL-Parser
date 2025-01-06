@@ -43,30 +43,21 @@ for input in file :
     
 rbdms.analyzeData()
 
-rbdms.generateInsertStatement()
+insertStatement = rbdms.generateInsertStatement()
     
-#at the end add a semicolon to finish up the insert statement
+
 
 
 #get the save path
 
 selectedPath = FileBrowser.setSaveLocation()
 
-savePath = f"{selectedPath}\{tableName} insert statement.txt"
+savePath = f"{selectedPath}\Insert Statement.txt"
 
-# create the output file 
+# # create the output file 
 
 outPut =  open(savePath,"w")
 
 outPut.write(insertStatement)
-
-
-   
-
-
-
-
-
-
 
 

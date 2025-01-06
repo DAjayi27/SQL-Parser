@@ -1,6 +1,16 @@
-arr = ["1","2","3","3"]
+test  = ("Val",33,False)
 
-arr[3] = float(arr[3])
+formatted = []
 
-print(arr)
+for val in test:
+    if isinstance(val,str):
+        formatted.append(f'"{val}"')
+    else:
+        formatted.append(str(val))
 
+
+
+joined  = ",".join(formatted)
+out  = f"({joined})"
+
+print(out)
